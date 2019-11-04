@@ -3,6 +3,7 @@ Cmd: initializeCompiler
 Cmd: compileComputeKernel
   api=4 insize=11176 outsize=10437 ok=1
 Cmd: compileComputeKernel
+<<<<<<< Updated upstream
   api=4 insize=5022 outsize=3733 ok=1
 Cmd: compileComputeKernel
   api=4 insize=18731 outsize=8681 ok=1
@@ -17,5 +18,8 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+=======
+  api=4 insize=18731 outsize=8681 ok=1
+>>>>>>> Stashed changes
 Cmd: initializeCompiler
 Cmd: initializeCompiler
