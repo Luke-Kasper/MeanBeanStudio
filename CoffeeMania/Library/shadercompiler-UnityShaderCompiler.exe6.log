@@ -1,16 +1,13 @@
 Base path: C:/Program Files/Unity 2018.3.8f1/Editor/Data
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-<<<<<<< Updated upstream
-  api=4 insize=5022 outsize=4101 ok=1
+  api=4 insize=4845 outsize=9129 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=3532 outsize=2581 ok=1
+  api=4 insize=3396 outsize=2581 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=18731 outsize=8553 ok=1
+  api=4 insize=18299 outsize=8545 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=18731 outsize=10769 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=1864 outsize=553 ok=1
+  api=4 insize=2867 outsize=353 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
@@ -22,22 +19,16 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
-=======
-  api=4 insize=5022 outsize=9129 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=3532 outsize=2581 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=18731 outsize=10377 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=5591 outsize=6445 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=2953 outsize=1329 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=1864 outsize=1389 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=1505 outsize=1461 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=2120 outsize=1033 ok=1
->>>>>>> Stashed changes
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler

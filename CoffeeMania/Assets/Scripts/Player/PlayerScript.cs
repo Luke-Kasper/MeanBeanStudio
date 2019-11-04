@@ -9,8 +9,10 @@ public class PlayerScript : MonoBehaviour
     {
         public KeyCode strafeLeft = KeyCode.A;
         public KeyCode strafeRight = KeyCode.D;
-        public KeyCode turnLeft = KeyCode.LeftArrow;//turn 90 degrees left
-        public KeyCode turnRight = KeyCode.RightArrow;//turn 90 degrees right
+        public KeyCode turnLeft = KeyCode.Q;//turn 90 degrees left
+        public KeyCode turnLeftTwo = KeyCode.LeftArrow;//turn 90 degrees left
+        public KeyCode turnRight = KeyCode.E;//turn 90 degrees right
+        public KeyCode turnRightTwo = KeyCode.RightArrow;//turn 90 degrees right
         public KeyCode jump = KeyCode.Space;
         public KeyCode slide = KeyCode.S;
         public KeyCode shoot = KeyCode.C;
@@ -47,8 +49,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject EndScreen;
     //strafing
     public bool LimitDistanceFromCentor = true;
-    public float MaxDistanceLeftFromCentor = -10;
-    public float MaxDistanceRightFromCentor = 10;
+    public float MaxDistanceFromCentor = 5;
     private float DistanceFromCentor = 0;
     private float RoundNum;// used duing caluation
     private int TileNumX;
@@ -72,7 +73,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        print(hit.collider.tag);
+        //print(hit.collider.tag);
         if (hit.collider.CompareTag("Obstacle"))
         {
             //SceneManager.LoadScene(0);
@@ -80,15 +81,11 @@ public class PlayerScript : MonoBehaviour
             Time.timeScale = 0;
         }
 
-
         if (hit.collider.CompareTag("Wall"))
         {
         }
 
     }
-
-
-
 
     private void Move()
     {
@@ -96,26 +93,7 @@ public class PlayerScript : MonoBehaviour
 
         if (LimitDistanceFromCentor == true)
         {
-            RoundNum = controller.transform.position.z / 50;
-            RoundNum += 0.5f;
-            int TileNumZ = (int)RoundNum;
-
-            RoundNum = controller.transform.position.x / 50;
-            RoundNum += 0.5f;
-            int TileNumX = (int)RoundNum;
-
-            if (controller.transform.forward == Vector3.forward)
-            {   //print("forward");
-            }
-            else if (controller.transform.forward == Vector3.forward * -1)
-            {   //print("back");
-            }
-            else if (controller.transform.forward == Vector3.right)
-            {   //print("right");
-            }
-            else if (controller.transform.forward == Vector3.right * -1)
-            {   //print("left");
-            }
+            strafe();
         }
         else
         {
@@ -171,14 +149,16 @@ public class PlayerScript : MonoBehaviour
         }
         else // if not already turning
         {
-            if (Input.GetKeyDown(controls.turnLeft))
+            // Turns the chracter left 
+            if (Input.GetKeyDown(controls.turnLeft) || Input.GetKeyDown(controls.turnLeftTwo))
             {
                 turning = true;
                 angleToTurn = -90;
                 turnAngle = Mathf.Lerp(0, angleToTurn, Time.deltaTime * turnSpeed);
             }
-
-            if (Input.GetKeyDown(controls.turnRight))
+        
+            // Turns the charcter right
+            if (Input.GetKeyDown(controls.turnRight) || Input.GetKeyDown(controls.turnRightTwo))
             {
                 turning = true;
                 angleToTurn = 90;
@@ -200,7 +180,73 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
+    private void strafe()
+    {
+        RoundNum = controller.transform.position.z / 50;
+        if (RoundNum > 0)
+        { RoundNum += 0.5f; }
+        else
+        { RoundNum -= 0.5f; }
+        int TileNumZ = (int)RoundNum;
 
+        RoundNum = controller.transform.position.x / 50;
+        if (RoundNum > 0)
+        { RoundNum += 0.5f; }
+        else
+        { RoundNum -= 0.5f; }
+        int TileNumX = (int)RoundNum;
+
+        if (controller.transform.forward == Vector3.forward)
+        {   //print("forward");
+            DistanceFromCentor = (TileNumX * 50) - controller.transform.position.x;
+            NegativeDirection = false;
+        }
+        else if (controller.transform.forward == Vector3.forward * -1)
+        {   //print("back");
+            DistanceFromCentor = (TileNumX * 50) - controller.transform.position.x;
+            NegativeDirection = true;
+        }
+        else if (controller.transform.forward == Vector3.right)
+        {   //print("right");
+            DistanceFromCentor = (TileNumZ * 50) - controller.transform.position.z;
+            NegativeDirection = true;
+        }
+        else if (controller.transform.forward == Vector3.right * -1)
+        {   //print("left");
+            DistanceFromCentor = (TileNumZ * 50) - controller.transform.position.z;
+            NegativeDirection = false;
+        }
+        //print("Z:" + TileNumZ + "X:" + TileNumX + " distance:" + DistanceFromCentor + "neg" + NegativeDirection);
+
+
+
+        if (NegativeDirection == false)
+        {
+            if (DistanceFromCentor < MaxDistanceFromCentor)
+            { allowStrafeLeft = true; }
+            else
+            { allowStrafeLeft = false; }
+
+            if (DistanceFromCentor > -MaxDistanceFromCentor)
+            { allowStrafeRight = true; }
+            else
+            { allowStrafeRight = false; }
+        }
+        else
+        {
+
+            if (DistanceFromCentor > -MaxDistanceFromCentor)
+            { allowStrafeLeft = true; }
+            else
+            { allowStrafeLeft = false; }
+
+            if (DistanceFromCentor < MaxDistanceFromCentor)
+            { allowStrafeRight = true; }
+            else
+            { allowStrafeRight = false; }
+
+        }
+    }
     public void AddBuff(Buff buff)
     {
         buffs.Add(buff);
@@ -226,3 +272,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 }
+
+
+

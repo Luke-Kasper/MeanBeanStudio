@@ -145,7 +145,6 @@ public class TileManager : MonoBehaviour
                 GameObject obstacle = Instantiate(obstacles[Random.Range(0, obstacles.Count)]);
                 obstacle.transform.position = tile.transform.position;
                 obstacle.transform.SetParent(tile.transform);
-                //obstacle.transform.Translate(obstaclePos);
                 obstacle.transform.localPosition = obstaclePos;
                 obstacle.transform.rotation = tile.transform.rotation;
             }

@@ -12,6 +12,7 @@ public class MapScript : MonoBehaviour
     //public int pickupsPerTile;
     public int turnCDMin;
     public int turnCDMax;
+    public GameObject trigger;
     public List<GameObject> straightTileSet = new List<GameObject>();
     public List<GameObject> leftTurnTileSet = new List<GameObject>();
     public List<GameObject> rightTurnTileSet = new List<GameObject>();
@@ -48,7 +49,7 @@ public class MapScript : MonoBehaviour
         }
     }
 
-    private void ResetMap()
+    public void ResetMap()
     {
         tileToSpawn = straightTileSet[0];
         spawnPoint = Vector3.zero;
@@ -63,7 +64,7 @@ public class MapScript : MonoBehaviour
         }
     }
 
-    private void SpawnTile()
+    public void SpawnTile()
     {
         tileToSpawn = Instantiate(tileToSpawn);
         tileToSpawn.transform.SetParent(this.transform);
@@ -111,7 +112,7 @@ public class MapScript : MonoBehaviour
         }
     }
 
-    private void DeleteTile()
+    public void DeleteTile()
     {
         Destroy(spawnedTiles[0]);
         spawnedTiles.RemoveAt(0);
@@ -151,5 +152,12 @@ public class MapScript : MonoBehaviour
             obstacle.transform.localPosition = obstaclePos;
             obstacle.transform.rotation = tile.transform.rotation;
         }
+    }
+
+    private void SpawnTrigger(GameObject tile)
+    {
+        GameObject a_trigger = Instantiate(trigger);
+        a_trigger.transform.SetParent(tile.transform);
+
     }
 }
